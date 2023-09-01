@@ -6,4 +6,4 @@ This project uses :
 - Canvas for diagram and visuals generation
 
 
-v0.0.1
+v0.0.2
