@@ -54,10 +54,7 @@ function App() {
           border
           round
           margin={{ left: "small", right: "small", bottom: "small" }}
-        >
-          "Chipkali ke nana hain, chipkali ke hain sasur, Danasur Danasur
-          Danasur" - Gulzar
-        </Box>
+        ></Box>
       </Box>
     </Grommet>
   );
