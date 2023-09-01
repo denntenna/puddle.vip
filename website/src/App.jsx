@@ -36,7 +36,7 @@ function App() {
     setup(width, height);
     // initialize matter
     // initialize tone
-  });
+  }, []);
   return (
     <Grommet theme={theme} full>
       <Box fill>
