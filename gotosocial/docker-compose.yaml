@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  gotosocial:
+    image: superseriousbusiness/gotosocial:0.11.0
+    container_name: gotosocial
+    user: 1000:1000
+    networks:
+      - gotosocial
+    environment:
+      GTS_HOST: localhost:1880
+      GTS_DB_TYPE: sqlite
+      GTS_DB_ADDRESS: /gotosocial/storage/sqlite.db
+      GTS_LETSENCRYPT_ENABLED: "false"
+      TZ: IST
+    ports:
+      - "1880:8080"
+      - "1881:80"
+    volumes:
+      - ~/data/gotosocial:/gotosocial/storage
+    restart: "always"
+
+networks:
+  gotosocial:
+    ipam:
+      driver: default

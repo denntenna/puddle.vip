@@ -1,0 +1,56 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      website: ${{ steps.filter.outputs.website }}
+      gotosocial: ${{ steps.filter.outputs.gotosocial}}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - uses: dorny/paths-filter@v2.2.0
+        id: filter
+        with:
+          filters: |
+            website:
+                - 'website/**/*'
+            gotosocial:
+                - 'gotosocial/**/*'
+
+  website:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.website == 'true' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Declare some variables
+        id: vars
+        shell: bash
+        run: |
+          echo "setting variables"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          cd website
+          npm install --force
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: website/build
+
+  gotosocial:
+    runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.gotosocial == 'true' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
