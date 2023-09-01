@@ -36,7 +36,7 @@ function App() {
     setup(width, height);
     // initialize matter
     // initialize tone
-  }, []);
+  });
   return (
     <Grommet theme={theme} full>
       <Box fill>
@@ -54,7 +54,9 @@ function App() {
           border
           round
           margin={{ left: "small", right: "small", bottom: "small" }}
-        ></Box>
+        >
+          What's on your mind?
+        </Box>
       </Box>
     </Grommet>
   );

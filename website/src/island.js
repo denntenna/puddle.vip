@@ -42,9 +42,7 @@ function drawIsland(ctx, origin, radius, resolution, noise = 1) {
 function setup(width, height) {
   const canvas = document.getElementById("islands");
   const ctx = canvas.getContext("2d");
-  if (canvas.getContext) {
-    const ctx = canvas.getContext("2d");
-
+  if (ctx) {
     drawIsland(ctx, { x: width / 2, y: height / 2 }, 150, 100, 10);
     for (let i = 0; i < 25; i++) {
       drawIsland(
