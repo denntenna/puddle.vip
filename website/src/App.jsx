@@ -33,7 +33,7 @@ const theme = {
 function App() {
   const [squareRef, { width, height }] = useElementSize();
   useEffect(() => {
-    setup();
+    setup(width, height);
     // initialize matter
     // initialize tone
   });

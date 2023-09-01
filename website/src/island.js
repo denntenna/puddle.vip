@@ -37,33 +37,24 @@ function drawIsland(ctx, origin, radius, resolution, noise = 1) {
   ctx.lineTo(points[len].x, points[len].y, points[0].x, points[0].y, 10);
   ctx.closePath();
   ctx.stroke();
-  console.log(points);
 }
 
-function setup() {
+function setup(width, height) {
   const canvas = document.getElementById("islands");
   const ctx = canvas.getContext("2d");
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    drawIsland(ctx, { x: 200, y: 300 }, 150, 100, 10);
-    drawIsland(ctx, { x: 50, y: 50 }, 50, 25, 2);
-    drawIsland(ctx, { x: 25, y: 600 }, 20, 25, 2);
-    // drawIsland(ctx, { x: 525, y: 45 }, 20, 25, 2);
-    // drawIsland(ctx, { x: 425, y: 600 }, 20, 25, 2);
-    drawIsland(ctx, { x: 625, y: 600 }, 25, 25, 2);
-    drawIsland(ctx, { x: 720, y: 800 }, 90, 25, 2);
-    // drawIsland(ctx, { x: 10, y: 10 }, 100, 50, 10);
-    // drawIsland(ctx, { x: 150, y: 500 }, 100, 50, 10);
-    drawIsland(ctx, { x: 300, y: 600 }, 100, 50, 10);
-
-    // ctx.beginPath();
-    // ctx.moveTo(200, 100);
-    // ctx.lineTo(200, 100, 100, 300, 10);
-    // ctx.lineTo(100, 300, 300, 300, 10);
-    // ctx.lineTo(300, 300, 200, 100, 10);
-    // ctx.closePath();
-    // ctx.stroke();
+    drawIsland(ctx, { x: width / 2, y: height / 2 }, 150, 100, 10);
+    for (let i = 0; i < 25; i++) {
+      drawIsland(
+        ctx,
+        { x: width * Math.random(), y: height * Math.random() },
+        Math.random() * 50,
+        25,
+        2
+      );
+    }
   } else {
     // canvas-unsupported code here
     print("you don;t have canvas");
